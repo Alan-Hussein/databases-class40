@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
+const con = mysql.createConnection({
   host: "localhost",
   user: "hyfuser",
   password: "hyfpassword",
@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
 });
 
 function getPopulation(Country, name, code, cb) {
-  conn.query(
+  con.query(
     `SELECT Population FROM ${Country} WHERE Name = ? and code = ?`,
     function (err, result) {
       if (err) cb(err);
@@ -28,3 +28,4 @@ function getPopulation(Country, name, code, cb) {
     }
   );
 }
+getPopulation("country", "Netherlands", "NLD 'OR' 1=1;", console.log);
